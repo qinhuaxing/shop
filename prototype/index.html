@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopLab 个人电商实战 · 原型</title>
+  <link rel="stylesheet" href="./css/app.css" />
+</head>
+<body>
+  <div class="stage">
+    <aside class="sidebar">
+      <div class="brand-mark">
+        <div class="logo">S</div>
+        <div>
+          <h1>ShopLab 原型</h1>
+          <p>个人电商实战 · V2.0</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:8px;line-height:1.5">
+        覆盖 PRD P0 交易闭环：浏览 → 加购 → 下单 → 模拟支付 → 履约 → 售后。
+      </p>
+
+      <div class="mode-switch" style="margin-top:16px">
+        <button class="active" data-mode="h5" id="modeH5">H5 商城</button>
+        <button data-mode="admin" id="modeAdmin">运营后台</button>
+      </div>
+
+      <div id="h5Nav">
+        <div class="nav-group">
+          <h3>账号</h3>
+          <button class="nav-btn" data-page="login">登录 <span class="tag">P0</span></button>
+        </div>
+        <div class="nav-group">
+          <h3>浏览购买</h3>
+          <button class="nav-btn active" data-page="home">首页 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="category">分类 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="search">搜索 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="detail">商品详情 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="cart">购物车 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="checkout">结算 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="pay">模拟支付 <span class="tag">P0</span></button>
+        </div>
+        <div class="nav-group">
+          <h3>订单履约</h3>
+          <button class="nav-btn" data-page="orders">订单列表 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="orderDetail">订单详情 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="logistics">物流轨迹 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="aftersale">申请售后 <span class="tag">P0</span></button>
+        </div>
+        <div class="nav-group">
+          <h3>我的</h3>
+          <button class="nav-btn" data-page="profile">个人中心 <span class="tag">P0</span></button>
+          <button class="nav-btn" data-page="coupons">优惠券 <span class="tag">P1</span></button>
+          <button class="nav-btn" data-page="messages">消息中心 <span class="tag">P1</span></button>
+        </div>
+      </div>
+
+      <div id="adminNav" style="display:none">
+        <div class="nav-group">
+          <h3>后台模块</h3>
+          <button class="nav-btn active" data-admin="dashboard">经营看板</button>
+          <button class="nav-btn" data-admin="products">商品中心</button>
+          <button class="nav-btn" data-admin="orders">订单中心</button>
+          <button class="nav-btn" data-admin="aftersale">售后中心</button>
+          <button class="nav-btn" data-admin="inventory">库存中心</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="preview-wrap">
+      <div class="preview-meta">
+        <div>
+          <h2 id="pageTitle">首页</h2>
+          <p id="pageDesc">轮播、类目入口、推荐商品，支持配置跳转。</p>
+        </div>
+        <div class="chip-row" id="pageChips">
+          <span class="chip">Vue3 + Vant 风格</span>
+          <span class="chip">可点击跳转</span>
+        </div>
+      </div>
+
+      <!-- H5 Phone -->
+      <div class="phone" id="h5View">
+        <div class="phone-screen">
+          <div class="notch"></div>
+          <div class="status-bar"><span>9:41</span><span>ShopLab</span><span>5G</span></div>
+          <div class="app-body" id="appBody">
+
+            <!-- LOGIN -->
+            <section class="page no-tab" id="page-login">
+              <div class="login-hero">
+                <div class="logo">S</div>
+                <h2>ShopLab</h2>
+                <p>个人电商实战 · 手机号验证码登录</p>
+              </div>
+              <div class="form-card">
+                <div class="form-row"><label>手机号</label><input value="138****8000" readonly /></div>
+                <div class="form-row">
+                  <label>验证码</label>
+                  <input value="123456" readonly />
+                  <button class="btn btn-sm btn-ghost" type="button">获取验证码</button>
+                </div>
+              </div>
+              <div style="padding:16px 14px">
+                <button class="btn btn-primary btn-block" data-go="home">登录并进入商城</button>
+                <p class="muted" style="text-align:center;margin-top:12px">演示账号已预填，无需真实短信</p>
+              </div>
+            </section>
+
+            <!-- HOME -->
+            <section class="page active" id="page-home">
+              <div class="search-bar" data-go="search">🔍 搜索商品、品牌或类目</div>
+              <div class="banner" data-go="detail">
+                <h3>春季新品特惠</h3>
+                <p>满 99 减 20 · 模拟活动 · 可后台配置</p>
+              </div>
+              <div class="section">
+                <div class="grid-nav">
+                  <button data-go="category"><span class="icon" style="background:#e85d3b">衣</span>服饰</button>
+                  <button data-go="category"><span class="icon" style="background:#3b82c4">电</span>数码</button>
+                  <button data-go="category"><span class="icon" style="background:#1f8a5b">家</span>家居</button>
+                  <button data-go="category"><span class="icon" style="background:#c47a12">美</span>美妆</button>
+                  <button data-go="coupons"><span class="icon" style="background:#7c5cbf">券</span>领券</button>
+                </div>
+              </div>
+              <div class="section">
+                <div class="section-head"><h3>为你推荐</h3><a data-go="search">更多</a></div>
+                <div class="product-grid" id="homeProducts"></div>
+              </div>
+            </section>
+
+            <!-- CATEGORY -->
+            <section class="page" id="page-category">
+              <div class="nav-top"><button class="back" data-go="home">←</button><div class="title">分类</div></div>
+              <div style="display:grid;grid-template-columns:96px 1fr;min-height:520px">
+                <div style="background:#f0f1f3">
+                  <div class="cell" style="background:#fff;color:var(--brand);font-weight:600;border-left:3px solid var(--brand)">服饰</div>
+                  <div class="cell">数码</div>
+                  <div class="cell">家居</div>
+                  <div class="cell">美妆</div>
+                  <div class="cell">运动</div>
+                </div>
+                <div style="padding:12px;background:#fff">
+                  <div class="section-head"><h3>上衣</h3></div>
+                  <div class="product-grid" id="cateProducts"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- SEARCH -->
+            <section class="page no-tab" id="page-search">
+              <div class="nav-top">
+                <button class="back" data-go="home">←</button>
+                <div class="search-bar" style="flex:1;margin:0">
+                  <input id="searchInput" placeholder="搜索商品" value="针织开衫" />
+                </div>
+                <button class="action" data-go="search">搜索</button>
+              </div>
+              <div class="section">
+                <div class="section-head"><h3>历史搜索</h3><span class="link">清空</span></div>
+                <div class="chip-row">
+                  <span class="chip">针织开衫</span><span class="chip">蓝牙耳机</span><span class="chip">保温杯</span>
+                </div>
+              </div>
+              <div class="section">
+                <div class="section-head">
+                  <h3>搜索结果</h3>
+                  <div class="chip-row">
+                    <span class="chip">综合</span><span class="chip">销量</span><span class="chip">价格</span>
+                  </div>
+                </div>
+                <div class="product-grid" id="searchProducts"></div>
+              </div>
+            </section>
+
+            <!-- DETAIL -->
+            <section class="page no-tab" id="page-detail">
+              <div class="nav-top">
+                <button class="back" data-go="home">←</button>
+                <div class="title">商品详情</div>
+                <button class="action" data-go="cart">购物车</button>
+              </div>
+              <div class="detail-thumb" style="height:260px;background:linear-gradient(160deg,#ffe0d4,#fff);margin:0;width:100%;border-radius:0;font-size:72px">🧥</div>
+              <div style="background:#fff;padding:14px;border-bottom:1px solid var(--line)">
+                <div class="price">¥129.00 <small>销量 2.3k</small></div>
+                <h3 style="margin-top:8px;font-size:16px;line-height:1.4">轻暖羊毛混纺针织开衫 · 秋冬基础款</h3>
+                <p class="muted" style="margin-top:6px">服务：7 天无理由 · 假一赔三 · 模拟物流</p>
+              </div>
+              <div class="sku-panel">
+                <div style="display:flex;justify-content:space-between"><strong>规格</strong><span class="muted">库存 86</span></div>
+                <div class="sku-options" id="skuColor">
+                  <button class="active">燕麦白</button><button>炭灰</button><button>雾蓝</button>
+                </div>
+                <div style="margin-top:12px"><strong>尺码</strong></div>
+                <div class="sku-options" id="skuSize">
+                  <button>S</button><button class="active">M</button><button>L</button><button>XL</button>
+                </div>
+              </div>
+              <div class="form-card">
+                <div class="cell"><div class="label">图文详情</div><div class="value">材质 / 尺码表 / 洗涤说明</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">评价</div><div class="value">98% 好评</div><div class="arrow">›</div></div>
+              </div>
+              <div class="bottom-bar">
+                <button class="btn btn-ghost" data-action="fav">收藏</button>
+                <button class="btn btn-ghost" data-action="addCart">加入购物车</button>
+                <button class="btn btn-primary" data-go="checkout">立即购买</button>
+              </div>
+            </section>
+
+            <!-- CART -->
+            <section class="page" id="page-cart">
+              <div class="nav-top"><div class="title">购物车</div><button class="action">管理</button></div>
+              <div id="cartList"></div>
+              <div class="bottom-bar">
+                <label style="display:flex;align-items:center;gap:6px;font-size:13px"><input type="checkbox" checked /> 全选</label>
+                <div class="sum">合计 <span class="price" id="cartTotal">¥0</span></div>
+                <button class="btn btn-primary" data-go="checkout">去结算</button>
+              </div>
+            </section>
+
+            <!-- CHECKOUT -->
+            <section class="page no-tab" id="page-checkout">
+              <div class="nav-top"><button class="back" data-go="cart">←</button><div class="title">确认订单</div></div>
+              <div class="form-card">
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:600">秦大大 138****8000</div>
+                    <div class="muted" style="margin-top:4px">上海市浦东新区张江路 88 号 6 栋 302</div>
+                  </div>
+                  <div class="arrow">›</div>
+                </div>
+              </div>
+              <div id="checkoutItems"></div>
+              <div class="form-card">
+                <div class="cell"><div class="label">优惠券</div><div class="value">满 99 减 20</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">运费</div><div class="value">¥0（满包邮）</div></div>
+                <div class="cell"><div class="label">备注</div><input placeholder="选填：配送备注" style="border:0;outline:0;flex:1;text-align:right" /></div>
+              </div>
+              <div class="form-card">
+                <div class="cell"><div class="label">商品金额</div><div class="value" id="checkoutGoods">¥149.00</div></div>
+                <div class="cell"><div class="label">优惠</div><div class="value" style="color:var(--brand)">-¥20.00</div></div>
+                <div class="cell"><div class="label">应付</div><div class="price" id="checkoutPay">¥129.00</div></div>
+              </div>
+              <div class="bottom-bar">
+                <div class="sum">应付 <span class="price">¥129.00</span></div>
+                <button class="btn btn-primary" data-go="pay">提交订单</button>
+              </div>
+            </section>
+
+            <!-- PAY -->
+            <section class="page no-tab" id="page-pay">
+              <div class="nav-top"><button class="back" data-go="checkout">←</button><div class="title">模拟支付</div></div>
+              <div style="padding:28px 14px;text-align:center;background:#fff;border-bottom:1px solid var(--line)">
+                <div class="muted">订单号 SL202607230001</div>
+                <div class="price" style="font-size:32px;margin-top:10px">¥129.00</div>
+                <div class="badge warn" style="margin-top:10px">待支付 · 剩余 29:58</div>
+              </div>
+              <div class="list" style="margin-top:12px">
+                <div class="cell"><div class="label">模拟支付宝</div><span class="badge brand">推荐</span><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">模拟微信支付</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">模拟银行卡</div><div class="arrow">›</div></div>
+              </div>
+              <div style="padding:16px 14px">
+                <button class="btn btn-primary btn-block" data-action="paySuccess">支付成功</button>
+                <button class="btn btn-ghost btn-block" style="margin-top:10px" data-action="payFail">模拟支付失败</button>
+                <p class="muted" style="text-align:center;margin-top:12px;line-height:1.5">
+                  支付结果以服务端确认为准；支持重复回调与主动查单。
+                </p>
+              </div>
+            </section>
+
+            <!-- ORDERS -->
+            <section class="page" id="page-orders">
+              <div class="nav-top"><div class="title">我的订单</div></div>
+              <div class="chip-row" style="padding:10px 14px;background:#fff;border-bottom:1px solid var(--line)">
+                <span class="chip" style="background:#fff1ec;border-color:#ffd2c4;color:var(--brand)">全部</span>
+                <span class="chip">待支付</span><span class="chip">待发货</span><span class="chip">待收货</span><span class="chip">售后</span>
+              </div>
+              <div id="orderList"></div>
+            </section>
+
+            <!-- ORDER DETAIL -->
+            <section class="page no-tab" id="page-orderDetail">
+              <div class="nav-top"><button class="back" data-go="orders">←</button><div class="title">订单详情</div></div>
+              <div style="background:#fff;padding:14px;border-bottom:1px solid var(--line)">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <strong>待收货</strong>
+                  <span class="badge ok">已支付</span>
+                </div>
+                <p class="muted" style="margin-top:6px">订单号 SL202607230001 · 可复制</p>
+              </div>
+              <div class="form-card">
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:600">运输中 · 预计明日送达</div>
+                    <div class="muted" style="margin-top:4px">上海市浦东新区转运中心已发出</div>
+                  </div>
+                  <button class="btn btn-sm btn-ghost" data-go="logistics">查看物流</button>
+                </div>
+              </div>
+              <div class="order-item" style="grid-template-columns:72px 1fr">
+                <div class="thumb" style="background:#ffe8df">🧥</div>
+                <div>
+                  <div style="font-size:13px">轻暖羊毛混纺针织开衫</div>
+                  <div class="muted" style="margin-top:4px">燕麦白 / M × 1</div>
+                  <div class="price" style="margin-top:8px">¥129.00</div>
+                </div>
+              </div>
+              <div class="form-card">
+                <div class="cell"><div class="label">实付金额</div><div class="price">¥129.00</div></div>
+                <div class="cell"><div class="label">支付方式</div><div class="value">模拟支付宝</div></div>
+                <div class="cell"><div class="label">下单时间</div><div class="value">2026-07-23 10:21:08</div></div>
+              </div>
+              <div class="bottom-bar">
+                <button class="btn btn-ghost" data-go="aftersale">申请售后</button>
+                <button class="btn btn-ghost" data-action="extend">延长收货</button>
+                <button class="btn btn-primary" data-action="confirmRecv">确认收货</button>
+              </div>
+            </section>
+
+            <!-- LOGISTICS -->
+            <section class="page no-tab" id="page-logistics">
+              <div class="nav-top"><button class="back" data-go="orderDetail">←</button><div class="title">物流轨迹</div></div>
+              <div class="form-card">
+                <div class="cell"><div class="label">承运商</div><div class="value">模拟快递</div></div>
+                <div class="cell"><div class="label">运单号</div><div class="value">SFMOCK88880001</div></div>
+              </div>
+              <div class="timeline">
+                <div class="timeline-item active">
+                  <div class="dot"></div>
+                  <div><div class="t">运输中</div><div class="d">07-23 18:20 · 上海转运中心已发出</div></div>
+                </div>
+                <div class="timeline-item">
+                  <div class="dot"></div>
+                  <div><div class="t">已揽收</div><div class="d">07-23 14:05 · 仓库已交接给承运商</div></div>
+                </div>
+                <div class="timeline-item">
+                  <div class="dot"></div>
+                  <div><div class="t">已发货</div><div class="d">07-23 13:40 · 商家已打包出库</div></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- AFTERSALE -->
+            <section class="page no-tab" id="page-aftersale">
+              <div class="nav-top"><button class="back" data-go="orderDetail">←</button><div class="title">申请售后</div></div>
+              <div class="order-item" style="grid-template-columns:72px 1fr">
+                <div class="thumb" style="background:#ffe8df">🧥</div>
+                <div>
+                  <div style="font-size:13px">轻暖羊毛混纺针织开衫</div>
+                  <div class="muted" style="margin-top:4px">可退数量 1 · 可退金额 ¥129.00</div>
+                </div>
+              </div>
+              <div class="form-card">
+                <div class="cell"><div class="label">售后类型</div><div class="value">仅退款</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">退款原因</div><div class="value">尺码不合适</div><div class="arrow">›</div></div>
+                <div class="form-row"><label>说明</label><textarea placeholder="选填：补充说明"></textarea></div>
+              </div>
+              <div style="padding:16px 14px">
+                <button class="btn btn-primary btn-block" data-action="submitAftersale">提交申请</button>
+                <p class="muted" style="text-align:center;margin-top:10px">提交后进入待审核，支持进度查询与凭证上传</p>
+              </div>
+            </section>
+
+            <!-- PROFILE -->
+            <section class="page" id="page-profile">
+              <div style="background:linear-gradient(160deg,#1a1c1e,#3a3f46);color:#fff;padding:28px 16px 20px">
+                <div style="display:flex;gap:12px;align-items:center">
+                  <div style="width:52px;height:52px;border-radius:50%;background:var(--brand);display:grid;place-items:center;font-weight:700">秦</div>
+                  <div>
+                    <div style="font-size:18px;font-weight:700">秦大大</div>
+                    <div style="opacity:.75;font-size:12px;margin-top:4px">会员 · 138****8000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" style="margin-top:-12px">
+                <div class="form-card" style="margin:0">
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);padding:14px 0;text-align:center">
+                    <button data-go="orders" style="border:0;background:transparent;cursor:pointer"><div style="font-weight:700">1</div><div class="muted">待支付</div></button>
+                    <button data-go="orders" style="border:0;background:transparent;cursor:pointer"><div style="font-weight:700">1</div><div class="muted">待发货</div></button>
+                    <button data-go="orders" style="border:0;background:transparent;cursor:pointer"><div style="font-weight:700">1</div><div class="muted">待收货</div></button>
+                    <button data-go="aftersale" style="border:0;background:transparent;cursor:pointer"><div style="font-weight:700">0</div><div class="muted">售后</div></button>
+                  </div>
+                </div>
+              </div>
+              <div class="list" style="margin-top:12px">
+                <div class="cell" data-go="coupons"><div class="label">优惠券</div><div class="value">2 张可用</div><div class="arrow">›</div></div>
+                <div class="cell" data-go="messages"><div class="label">消息中心</div><div class="value">3 条未读</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">收货地址</div><div class="arrow">›</div></div>
+                <div class="cell"><div class="label">账号与安全</div><div class="arrow">›</div></div>
+              </div>
+            </section>
+
+            <!-- COUPONS -->
+            <section class="page no-tab" id="page-coupons">
+              <div class="nav-top"><button class="back" data-go="profile">←</button><div class="title">优惠券</div></div>
+              <div class="form-card">
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:700;color:var(--brand)">¥20</div>
+                    <div style="font-size:13px;margin-top:4px">满 99 可用 · 全场通用</div>
+                    <div class="muted" style="margin-top:4px">有效期至 2026-08-31</div>
+                  </div>
+                  <span class="badge brand">可用</span>
+                </div>
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:700;color:var(--brand)">¥10</div>
+                    <div style="font-size:13px;margin-top:4px">满 59 可用 · 服饰类</div>
+                    <div class="muted" style="margin-top:4px">有效期至 2026-08-15</div>
+                  </div>
+                  <span class="badge">未达门槛</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- MESSAGES -->
+            <section class="page no-tab" id="page-messages">
+              <div class="nav-top"><button class="back" data-go="profile">←</button><div class="title">消息中心</div></div>
+              <div class="list">
+                <div class="cell" data-go="orderDetail">
+                  <div style="flex:1">
+                    <div style="font-weight:600">订单已发货</div>
+                    <div class="muted" style="margin-top:4px">您的订单 SL202607230001 已发出</div>
+                  </div>
+                  <span class="badge brand">未读</span>
+                </div>
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:600">支付成功</div>
+                    <div class="muted" style="margin-top:4px">已收到 ¥129.00，库存已确认扣减</div>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div style="flex:1">
+                    <div style="font-weight:600">系统公告</div>
+                    <div class="muted" style="margin-top:4px">ShopLab 原型演示环境已就绪</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <nav class="tabbar" id="tabbar">
+            <button data-page="home" class="active"><span class="ico">⌂</span>首页</button>
+            <button data-page="category"><span class="ico">▦</span>分类</button>
+            <button data-page="cart"><span class="ico">🛒</span>购物车</button>
+            <button data-page="profile"><span class="ico">☺</span>我的</button>
+          </nav>
+          <div class="toast" id="toast"></div>
+        </div>
+      </div>
+
+      <!-- Admin -->
+      <div class="admin-shell" id="adminView" style="display:none">
+        <aside class="admin-side">
+          <div class="logo">ShopLab Admin</div>
+          <button class="active" data-admin-panel="dashboard">经营看板</button>
+          <button data-admin-panel="products">商品中心</button>
+          <button data-admin-panel="orders">订单中心</button>
+          <button data-admin-panel="aftersale">售后中心</button>
+          <button data-admin-panel="inventory">库存中心</button>
+        </aside>
+        <div class="admin-main">
+          <div class="admin-top">
+            <strong id="adminTitle">经营看板</strong>
+            <span class="muted">演示账号 · 超级管理员</span>
+          </div>
+          <div class="admin-content">
+            <div class="admin-panel" id="admin-dashboard">
+              <div class="stat-grid">
+                <div class="stat-card"><div class="k">今日 GMV</div><div class="v">¥12,480</div></div>
+                <div class="stat-card"><div class="k">支付订单</div><div class="v">86</div></div>
+                <div class="stat-card"><div class="k">支付转化</div><div class="v">42%</div></div>
+                <div class="stat-card"><div class="k">退款率</div><div class="v">1.8%</div></div>
+              </div>
+              <table class="table">
+                <thead><tr><th>待办</th><th>数量</th><th>说明</th></tr></thead>
+                <tbody>
+                  <tr><td>待发货订单</td><td>12</td><td>已支付且库存已确认</td></tr>
+                  <tr><td>售后待审核</td><td>3</td><td>仅退款 / 退货退款</td></tr>
+                  <tr><td>库存预警</td><td>5</td><td>可售库存 &lt; 10</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="admin-panel" id="admin-products" style="display:none">
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+                <strong>SPU / SKU 列表</strong>
+                <button class="btn btn-sm btn-primary">新建商品</button>
+              </div>
+              <table class="table">
+                <thead><tr><th>商品</th><th>SKU</th><th>价格</th><th>库存</th><th>状态</th></tr></thead>
+                <tbody>
+                  <tr><td>针织开衫</td><td>SKU-1001-M</td><td>¥129</td><td>86</td><td><span class="badge ok">上架</span></td></tr>
+                  <tr><td>蓝牙耳机</td><td>SKU-2008-BK</td><td>¥199</td><td>42</td><td><span class="badge ok">上架</span></td></tr>
+                  <tr><td>保温杯</td><td>SKU-3012-WH</td><td>¥79</td><td>8</td><td><span class="badge warn">预警</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="admin-panel" id="admin-orders" style="display:none">
+              <table class="table">
+                <thead><tr><th>订单号</th><th>买家</th><th>金额</th><th>状态</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr><td>SL202607230001</td><td>秦大大</td><td>¥129</td><td><span class="badge brand">待收货</span></td><td>详情</td></tr>
+                  <tr><td>SL202607230014</td><td>演示用户</td><td>¥199</td><td><span class="badge ok">待发货</span></td><td>发货</td></tr>
+                  <tr><td>SL202607220088</td><td>演示用户</td><td>¥79</td><td><span class="badge">已完成</span></td><td>详情</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="admin-panel" id="admin-aftersale" style="display:none">
+              <table class="table">
+                <thead><tr><th>售后单</th><th>类型</th><th>金额</th><th>状态</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr><td>AS20260723003</td><td>仅退款</td><td>¥129</td><td><span class="badge warn">待审核</span></td><td>同意 / 拒绝</td></tr>
+                  <tr><td>AS20260722011</td><td>退货退款</td><td>¥79</td><td><span class="badge brand">待退货</span></td><td>查看</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="admin-panel" id="admin-inventory" style="display:none">
+              <table class="table">
+                <thead><tr><th>SKU</th><th>可售</th><th>预占</th><th>仓库</th><th>操作</th></tr></thead>
+                <tbody>
+                  <tr><td>SKU-1001-M</td><td>86</td><td>2</td><td>主仓</td><td>调整</td></tr>
+                  <tr><td>SKU-2008-BK</td><td>42</td><td>1</td><td>主仓</td><td>调整</td></tr>
+                  <tr><td>SKU-3012-WH</td><td>8</td><td>0</td><td>主仓</td><td>入库</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
